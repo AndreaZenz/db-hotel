@@ -15,7 +15,8 @@ WHERE `date_of_birth` > "1988"
 
 SELECT `name`,`id`,`date_of_birth`
 FROM `ospiti`
-WHERE `date_of_birth` < "2001"
+WHERE YEAR(`date_of_birth`) <= (YEAR(CURRENT_DATE) - 20)
+ORDER BY `date_of_birth` 
 
 -- seleziona tutti gli ospiti il cui nome inizia con la D
 
@@ -46,6 +47,9 @@ AND YEAR(`date_of_birth`) = "1975"
 
 SELECT * 
 FROM `paganti` 
-WHERE `ospite_id` <> "null"
+WHERE `ospite_id` IS NOT NULL;
 
 -- quanti posti letto ha in totale l'hotel
+
+SELECT SUM(`beds`) as `total_available_beds`
+FROM `stanze`
